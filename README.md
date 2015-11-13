@@ -10,33 +10,23 @@ Just clone the repo and install the necessary node modules:
 
 ```shell
 $ npm install                   # Install Node modules listed in ./package.json (may take a while the first time)
-$ npm start                     # Compile and launch
+$ npm install -g nodemon        # Install Nodemon
+$ gulp                          # Compile and launch
 ```
 
 Usage
 -----
 
-#### `npm run dev` also `npm start`
+#### `gulp` also `gulp dev`
 Runs the webpack build system just like in `compile` but enables HMR. The webpack dev server can be found at `localhost:3000`.
 
-#### `npm run dev:nw`
-Same as `npm run dev` but opens the debug tools in a new window.
-
-**Note:** you'll need to allow popups in Chrome, or you'll see an error: [issue 110](https://github.com/davezuko/react-redux-starter-kit/issues/110)
-
-#### `npm run dev:no-debug`
-Same as `npm run dev` but disables devtools.
-
-#### `npm run compile`
+#### `gulp compile`
 Runs the Webpack build system with your current NODE_ENV and compiles the application to disk (`~/dist`). Production builds will fail on eslint errors (but not on warnings).
 
-#### `npm run test`
+#### `gulp test`
 Runs unit tests with Karma.
 
-#### `npm run test:dev`
-Same as `npm run test`, but will watch for changes and re-run tests.
-
-#### `npm run deploy`
+#### `gulp deploy`
 Helper script to run tests and then, on success, compile your application.
 
 ### Configuration

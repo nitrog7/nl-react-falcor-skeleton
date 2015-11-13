@@ -38,7 +38,8 @@ app.use('/model.json', falcorExpress.dataSourceRoute((req, res) => {
 }));
 
 // Webpack middleware
-config.webpack.devtool = 'eval-source-map';
+config.webpack.devtool = 'eval';
+config.webpack.debug = true;
 config.webpack.eslint.emitWarning = true;
 config.webpack.entry.app.push(
   'webpack-hot-middleware/client'
@@ -58,7 +59,8 @@ app.use(webpackDevMiddleware(compiler, {
   contentBase: config.path.src.dir,
   publicPath:'/',
   hot: true,
-  inline: false,
+  inline: true,
+  progress: true,
   lazy: false,
   noInfo: true,
   watchOptions: {
