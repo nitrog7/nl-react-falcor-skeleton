@@ -1,9 +1,13 @@
 {
   "verbose": true,
   "ignore": [
+    "gulp/*",
+    "coverage/*",
+    "dist/*",
+    "gulp/*",
+    "node_modules/*",
     "src/*",
-    "test/*",
-    "node_modules/*"
+    "tests/*"
   ],
   "execMap": {
   }

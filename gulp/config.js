@@ -194,7 +194,6 @@ config.webpack = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          //cacheDirectory: config.absolute(config.path.tmp),
           cacheDirectory: true,
           presets: [
             'stage-0',

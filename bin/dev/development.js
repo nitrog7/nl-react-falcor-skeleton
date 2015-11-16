@@ -31,6 +31,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(history());
 
+// Static files
+app.use(express.static(config.absolute(config.path.dist.dir)));
 
 // Falcor route
 app.use('/model.json', falcorExpress.dataSourceRoute((req, res) => {
@@ -57,10 +59,17 @@ const compiler = webpack(config.webpack);
 
 app.use(webpackDevMiddleware(compiler, {
   contentBase: config.path.src.dir,
-  publicPath:'/',
+  publicPath: 'http://localhost:' + config.port.dev + '/',
   hot: true,
   inline: true,
-  progress: true,
+  stats: {
+    colors: true,
+    hash: false,
+    timings: true,
+    chunks: false,
+    chunkModules: false,
+    modules: false
+  },
   lazy: false,
   noInfo: true,
   watchOptions: {
@@ -74,9 +83,15 @@ app.use(webpackHotMiddleware(compiler, {
   reload: false
 }));
 
-// Static files
-app.use(express.static(config.absolute(config.path.dist.dir)));
+// Redirect everything not static to the index.html
+app.get('*', (req, res) => {
+  res.sendFile(config.absolute('index.html'));
+});
 
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if(err) {
+    util.log(err);
+  }
+
   util.log('Server started on: http://localhost:' + port);
 });
